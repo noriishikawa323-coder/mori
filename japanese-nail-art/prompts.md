@@ -97,6 +97,21 @@ No other text anywhere. No watermark, no logo, no extra words.
 
 ---
 
+## 案Aの右下コマを差し替える（ピンク一色を避ける）
+
+4枚すべてがピンク系だと画面が単調になり、サムネイルでの視認性が落ちる。
+生成後にこう返して、1コマだけ青に差し替える。
+
+```
+Keep the image exactly the same, but replace ONLY the bottom-right photo.
+Replace it with a close-up of nails in the same style and lighting, showing a
+deep indigo blue base with a white seigaiha wave pattern (traditional Japanese
+wave motif) on two nails, and solid indigo on the others.
+Do not change the other three photos, the layout, the white band, or the text.
+```
+
+---
+
 ## 文字が崩れたときの直し方
 
 2〜3回に1回はスペルが崩れる。生成画像をよく見て、崩れていたらこう返す。
