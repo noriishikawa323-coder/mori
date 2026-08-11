@@ -1,0 +1,102 @@
+<meta charset="utf-8">
+<title>店舗 掃除チェック表</title>
+<style>
+  :root{ --navy:#2B3A55; --accent:#F0A202; --line:#2B3A55; }
+  @page{ size:A4 landscape; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#fff; }
+  body{ font-family:"Noto Sans JP","IPAGothic",sans-serif; color:var(--navy);
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ width:297mm; height:210mm; padding:12mm 15mm; page-break-after:always;
+    position:relative; display:flex; flex-direction:column; }
+  .page:last-child{ page-break-after:auto; }
+
+  .head{ display:flex; align-items:flex-end; justify-content:space-between; }
+  h1{ font-size:22pt; font-weight:700; line-height:1.1; }
+  .rule{ font-size:11.5pt; text-align:right; line-height:1.6; }
+  .rule b{ font-weight:700; }
+
+  .band{ margin-top:4mm; border-left:2.6pt solid var(--accent); padding-left:4mm;
+    font-size:12.5pt; line-height:1.55; }
+  .band b{ font-weight:700; }
+
+  .meta{ margin-top:4mm; font-size:11pt; }
+  .blank{ display:inline-block; border-bottom:1.2pt solid var(--line); height:6.5mm; }
+
+  table{ width:100%; border-collapse:collapse; margin-top:4mm; }
+  th{ border:1.3pt solid var(--line); background:rgba(43,58,85,.08);
+    font-size:9.5pt; font-weight:700; padding:2mm 1mm; }
+  td{ border:1.3pt solid var(--line); font-size:12pt; padding:2mm 3mm; height:11.5mm; }
+  .c-task{ width:74mm; }
+  .c-cyc{ width:17mm; text-align:center; font-size:9.5pt; }
+  th.d{ background:rgba(240,162,2,.2); }
+  td.d{ }
+  tr.blankrow td.c-task{ background:rgba(43,58,85,.025); }
+
+  .foot{ position:absolute; left:15mm; right:15mm; bottom:6mm; font-size:8.5pt;
+    opacity:.5; display:flex; justify-content:space-between; }
+
+  .memo{ margin-top:5mm; border:1.3pt solid var(--line); padding:4mm 5mm;
+    font-size:10.5pt; line-height:1.8; }
+  .memo h3{ font-size:11.5pt; font-weight:700; margin-bottom:1.5mm; }
+</style>
+
+<!-- ===== P1 週1の表 ===== -->
+<div class="page">
+  <div class="head">
+    <h1>掃除チェック表</h1>
+    <div class="rule">
+      <b>日付が一番古い行を、1つやる。</b><br>
+      終わったら、空いている欄に今日の日付を書く。
+    </div>
+  </div>
+
+  <div class="band">
+    毎週 <span class="blank" style="width:14mm;"></span> 曜日の
+    <span class="blank" style="width:34mm;"></span>
+    に、この表を見る。<b>選ばない。1つでいい。</b>
+  </div>
+
+  <table>
+    <tr>
+      <th class="c-task">やること</th>
+      <th class="c-cyc">目安</th>
+      <th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th><th class="d">やった日</th>
+    </tr>
+    <tr><td class="c-task">床掃除</td><td class="c-cyc">週1</td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="c-task">グラスの下のリードペーパー交換</td><td class="c-cyc">週1</td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="c-task">ガス台清掃</td><td class="c-cyc">週1</td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="c-task">お座敷の床を拭く</td><td class="c-cyc">週1</td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="c-task">冷蔵庫の中を拭く</td><td class="c-cyc">月1</td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="c-task">外看板を拭く</td><td class="c-cyc">月1</td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="blankrow"><td class="c-task"></td><td class="c-cyc"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="blankrow"><td class="c-task"></td><td class="c-cyc"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="blankrow"><td class="c-task"></td><td class="c-cyc"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="blankrow"><td class="c-task"></td><td class="c-cyc"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="blankrow"><td class="c-task"></td><td class="c-cyc"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr>
+  </table>
+
+  <div class="foot"><span>掃除チェック表</span><span>1 / 2　週1</span></div>
+</div>
+
+<!-- ===== P2 年数回 ===== -->
+<div class="page">
+  <div class="head">
+    <h1>年に1〜2回のもの</h1>
+    <div class="rule">
+      季節が変わったと思った週に、この表だけ見る。<br>
+      年4回でいい。
+    </div>
+  </div>
+
+  <table style="margin-top:6mm;">
+    <tr>
+      <th class="c-task">やること</th>
+      <th style="width:38mm;">頼む先・道具</th>
+      <th style="width:26mm;">前回</th>
+      <th style="width:26mm;">今回</th>
+      <th style="width:26mm;">次いつ</th>
+      <th>メモ</th>
+    </tr>
+    <tr><td class="c-task"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="memo">
+    <h3>買い足すもの・切らしたもの</h3>
+    <div style="height:8mm;border-bottom:1pt solid rgba(43,58,85,.35);"></div>
+    <div style="height:8mm;border-bottom:1pt solid rgba(43,58,85,.35);"></div>
+    <div style="height:8mm;border-bottom:1pt solid rgba(43,58,85,.35);"></div>
+  </div>
+
+  <div class="foot"><span>掃除チェック表</span><span>2 / 2　年1〜2回</span></div>
+</div>
