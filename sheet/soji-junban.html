@@ -1,0 +1,213 @@
+<meta charset="utf-8">
+<title>順番を決めない掃除シート — 週1回、1つだけ</title>
+<style>
+  :root{ --navy:#2B3A55; --accent:#F0A202; --line:#2B3A55; }
+  @page{ size:A4; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#fff; }
+  body{ font-family:"Noto Sans JP","IPAGothic",sans-serif; color:var(--navy);
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ width:210mm; height:297mm; padding:15mm; page-break-after:always;
+    position:relative; display:flex; flex-direction:column; }
+  .page:last-child{ page-break-after:auto; }
+
+  h1{ font-size:25pt; font-weight:700; line-height:1.15; letter-spacing:.02em; }
+  h2{ font-size:15pt; font-weight:700; margin-bottom:3mm; }
+  .sub{ font-size:11pt; margin-top:2mm; opacity:.75; }
+  .note{ font-size:9.5pt; opacity:.7; }
+
+  .ifthen{ margin-top:5mm; padding:4mm 5mm; border:1.4pt solid var(--line);
+    font-size:12pt; line-height:1.7; }
+  .accentbar{ border:none; border-left:2.4pt solid var(--accent); padding-left:4mm; }
+
+  .box{ border:1.2pt solid var(--line); padding:4mm 5mm; font-size:10.5pt;
+    line-height:1.7; margin-top:4mm; }
+  .box h3{ font-size:12pt; font-weight:700; margin-bottom:2mm; }
+  .box .grp{ margin-top:3mm; }
+
+  ol.steps{ list-style:none; counter-reset:s; }
+  ol.steps li{ counter-increment:s; position:relative; padding-left:11mm;
+    margin-bottom:3.5mm; font-size:12pt; line-height:1.6; }
+  ol.steps li::before{ content:counter(s); position:absolute; left:0; top:.3mm;
+    width:7.5mm; height:7.5mm; border-radius:50%; background:var(--navy); color:#fff;
+    font-size:10pt; display:flex; align-items:center; justify-content:center; }
+
+  .dateline{ margin-top:4mm; font-size:12.5pt; }
+  .blank{ display:inline-block; width:22mm; border-bottom:1.2pt solid var(--line); height:7mm; }
+
+  table{ width:100%; border-collapse:collapse; }
+  .grid th{ border:1.2pt solid var(--line); background:rgba(43,58,85,.07);
+    font-size:9.5pt; font-weight:700; padding:2.5mm 1mm; line-height:1.4; }
+  .grid td{ border:1.2pt solid var(--line); height:13mm; font-size:11pt; padding:2mm 3mm; }
+  .c-task{ width:62mm; }
+  .c-cyc{ width:20mm; text-align:center; font-size:9pt; }
+  .c-date{ width:16mm; }
+  .hl th.c-date{ background:rgba(240,162,2,.18); }
+
+  .award{ margin-top:auto; border:1.6pt solid var(--accent); padding:5mm; }
+  .award .big{ font-size:14pt; display:flex; align-items:flex-end; gap:3mm; }
+  .award .big .money{ flex:1; border-bottom:1.6pt solid var(--accent); height:10mm; }
+  .dots{ margin-top:4mm; display:flex; gap:2.4mm; align-items:center; flex-wrap:wrap; }
+  .dot{ width:6.6mm; height:6.6mm; border:1.2pt solid var(--line); border-radius:50%; }
+  .dots .cap{ font-size:9pt; opacity:.7; margin-right:1mm; }
+
+  pre{ font-family:"Noto Sans JP","IPAGothic",monospace; font-size:10.5pt;
+    line-height:1.95; white-space:pre-wrap; border:1.2pt solid var(--line);
+    padding:5mm 6mm; margin-top:4mm; }
+
+  .foot{ position:absolute; left:15mm; right:15mm; bottom:8mm; font-size:8.5pt;
+    opacity:.55; display:flex; justify-content:space-between; }
+</style>
+
+<!-- ===== P1 ===== -->
+<div class="page">
+  <h1>順番を決めない掃除シート</h1>
+  <p class="sub">週に1回、1つだけ。やる場所は自分で選びません。</p>
+
+  <div class="ifthen accentbar" style="margin-top:6mm;">
+    掃除リストが続かないのは、量が多いからではありません。<br>
+    <b>「今日はどこをやるか」を毎回決めさせられる</b>からです。<br>
+    このシートは、その判断をなくします。
+  </div>
+
+  <h2 style="margin-top:7mm;">ルールは3つだけ</h2>
+  <ol class="steps">
+    <li><b>週に1回、決めた曜日にこの表を見る。</b><br>
+      <span class="note">開店前でも、閉店後でも、定休日でもかまいません。毎週同じタイミングにしてください。</span></li>
+    <li><b>日付が一番古い行を、1つやる。</b><br>
+      <span class="note">選びません。迷いません。空欄の行があれば、そこが最優先です。</span></li>
+    <li><b>終わったら、その行に今日の日付を書く。</b><br>
+      <span class="note">書くのは日付だけ。きれいになったかどうかは記録しません。</span></li>
+  </ol>
+
+  <div class="box">
+    <h3>なぜ「1つだけ」なのか</h3>
+    全部やろうとした日は、たいてい何もやらずに終わります。着手のハードルが高すぎるからです。<br>
+    項目が10個あっても、週1つずつなら<b>10週で一周</b>します。3ヶ月かからずに、店の全部に手が入った状態になります。<br>
+    早く終わらせることより、<b>止まらないこと</b>を優先した設計です。
+  </div>
+
+  <div class="box" style="margin-top:4mm;">
+    <h3>やる気がある日は</h3>
+    2つでも3つでもやって構いません。ただし<b>やらない日があっても、次の週にそのまま戻れます</b>。<br>
+    このシートは連続記録を数えません。抜けた週があっても、日付が一番古い行をやるだけです。
+  </div>
+
+  <div class="box" style="margin-top:4mm;">
+    <h3>最初にやること</h3>
+    次のページの空欄に、<b>自分の店（家）でふだん後回しにしている場所</b>を書き足してください。<br>
+    最初から埋まっている項目は、要らなければ線で消して構いません。
+  </div>
+
+  <div class="foot"><span>順番を決めない掃除シート</span><span>1 / 4　使い方</span></div>
+</div>
+
+<!-- ===== P2 本体 ===== -->
+<div class="page">
+  <h1 style="font-size:22pt;">やることリスト</h1>
+  <p class="sub">やった日を、左の空いている欄から順に書いていきます。</p>
+
+  <div class="dateline">
+    見る曜日　毎週 <span class="blank" style="width:16mm;"></span> 曜日の
+    <span class="blank" style="width:32mm;"></span>
+    <span class="note">（開店前／閉店後／定休日 など）</span>
+  </div>
+
+  <table class="grid" style="margin-top:5mm;">
+    <tr class="hl">
+      <th class="c-task">やること</th>
+      <th class="c-cyc">目安</th>
+      <th class="c-date">やった日</th><th class="c-date">やった日</th><th class="c-date">やった日</th>
+      <th class="c-date">やった日</th><th class="c-date">やった日</th><th class="c-date">やった日</th>
+    </tr>
+    <tr><td class="c-task">床掃除</td><td class="c-cyc">週1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task">グラスの下のリードペーパー交換</td><td class="c-cyc">週1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task">冷蔵庫の中を拭く</td><td class="c-cyc">月1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task">ガス台清掃</td><td class="c-cyc">週1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task">外看板を拭く</td><td class="c-cyc">月1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task">お座敷の床を拭く</td><td class="c-cyc">週1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td class="c-cyc"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td class="c-cyc"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td class="c-cyc"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td class="c-cyc"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="c-task"></td><td class="c-cyc"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="box" style="margin-top:5mm;">
+    <h3>迷ったときの判定</h3>
+    日付が同じくらいの行が並んだら、<b>上にあるほうをやる</b>。それだけ決めておけば、二度と迷いません。
+  </div>
+
+  <div class="foot"><span>順番を決めない掃除シート</span><span>2 / 4　やることリスト</span></div>
+</div>
+
+<!-- ===== P3 年数回のもの ===== -->
+<div class="page">
+  <h1 style="font-size:22pt;">年に1〜2回でいいもの</h1>
+  <p class="sub">週1の表に混ぜると邪魔になるので、こちらに分けました。</p>
+
+  <div class="ifthen" style="margin-top:5mm;">
+    <b>季節が変わったと感じた週に、この表だけ見る。</b><br>
+    年に4回見れば十分です。エアコン、換気扇、業者に頼むものはここに書いてください。
+  </div>
+
+  <table class="grid" style="margin-top:5mm;">
+    <tr class="hl">
+      <th class="c-task">やること</th>
+      <th style="width:30mm;">頼む先・道具</th>
+      <th class="c-date">前回</th><th class="c-date">今回</th><th class="c-date">次回</th>
+    </tr>
+    <tr><td class="c-task"></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="c-task"></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="c-task"></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="c-task"></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="c-task"></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="c-task"></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="award">
+    <div class="big">一周した回数 <span class="money"></span> 周目</div>
+    <div class="dots">
+      <span class="cap">やった週を塗る</span>
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+
+  <div class="foot"><span>順番を決めない掃除シート</span><span>3 / 4　年に1〜2回のもの</span></div>
+</div>
+
+<!-- ===== P4 テキスト版 ===== -->
+<div class="page">
+  <h1 style="font-size:22pt;">テキスト版（コピペ用）</h1>
+  <p class="sub">紙を貼りたくない人へ。メモアプリに入れて、日付だけ足していってください。</p>
+
+  <div class="box" style="margin-top:5mm;">
+    <h3>使い方</h3>
+    下の枠をメモアプリにコピーして、やった日を行の後ろに足すだけです。<br>
+    <b>一番後ろの日付が古い行</b>が、次にやる行になります。並べ替えは要りません。
+  </div>
+
+<pre>【掃除】毎週　　曜日に見る
+
+床掃除：
+グラスの下のリードペーパー交換：
+冷蔵庫の中を拭く：
+ガス台清掃：
+外看板を拭く：
+お座敷の床を拭く：
+：
+：
+：
+：
+：
+
+［年に1〜2回］
+：
+：
+：
+
+書き方の例
+　床掃除：4/6, 4/20, 5/11</pre>
+
+  <div class="box" style="margin-top:5mm;">
+    <h3>最後に</h3>
+    やれなかった週があっても、このシートは何も減りません。<br>
+    <b>次に見たとき、日付が一番古い行を1つやる。</b>それだけが、ずっと変わらないルールです。
+  </div>
+
+  <div class="foot"><span>順番を決めない掃除シート</span><span>4 / 4　テキスト版</span></div>
+</div>
