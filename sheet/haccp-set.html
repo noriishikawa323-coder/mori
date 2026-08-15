@@ -1,0 +1,279 @@
+<meta charset="utf-8">
+<title>飲食店の衛生管理記録表セット（HACCPの考え方を取り入れた衛生管理）</title>
+<style>
+  :root{ --navy:#2B3A55; --accent:#F0A202; --line:#2B3A55; }
+  @page{ size:A4 landscape; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#fff; }
+  body{ font-family:"Noto Sans JP","IPAGothic",sans-serif; color:var(--navy);
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ width:297mm; height:210mm; padding:10mm 12mm; page-break-after:always;
+    position:relative; display:flex; flex-direction:column; }
+  .page:last-child{ page-break-after:auto; }
+
+  .head{ display:flex; align-items:flex-end; justify-content:space-between; gap:8mm; }
+  h1{ font-size:17pt; font-weight:700; line-height:1.2; }
+  h1 small{ display:block; font-size:9pt; font-weight:400; opacity:.7; margin-top:1mm; }
+  .fields{ font-size:10pt; text-align:right; line-height:2.1; white-space:nowrap; }
+  .fld{ display:inline-block; border-bottom:1.2pt solid var(--line); height:6mm; }
+
+  table{ width:100%; border-collapse:collapse; }
+  th,td{ border:1pt solid var(--line); }
+  th{ background:rgba(43,58,85,.08); font-weight:700; }
+
+  .cal{ margin-top:4mm; table-layout:fixed; }
+  .cal th.item{ width:64mm; font-size:9pt; padding:1.5mm 2mm; text-align:left; }
+  .cal th.day{ font-size:6.6pt; padding:1.2mm 0; text-align:center; }
+  .cal td.item{ font-size:8.2pt; padding:1mm 2mm; line-height:1.3; }
+  .cal td.item b{ font-weight:700; font-size:9pt; }
+  .cal td.item span{ opacity:.7; font-size:7pt; display:block; }
+  .cal td.d{ padding:0; }
+  .cal tr{ height:8.8mm; }
+  .cal .sec td{ background:rgba(240,162,2,.18); font-size:8.2pt; font-weight:700;
+    padding:.8mm 2mm; height:5.4mm; }
+
+  .legend{ margin-top:2mm; font-size:8.6pt; opacity:.85; display:flex; gap:8mm; }
+  .legend b{ font-weight:700; }
+
+  .memo{ margin-top:2mm; }
+  .memo th{ font-size:8.6pt; padding:1.2mm; }
+  .memo td{ height:7.6mm; }
+  .memo .w-date{ width:22mm; }
+  .memo .w-sign{ width:26mm; }
+
+  .foot{ position:absolute; left:12mm; right:12mm; bottom:4mm; font-size:7.5pt;
+    opacity:.5; display:flex; justify-content:space-between; }
+
+  .guide{ margin-top:3mm; border:1.2pt solid var(--line); padding:3mm 4.5mm;
+    font-size:9pt; line-height:1.6; }
+  .guide h3{ font-size:10.5pt; font-weight:700; margin-bottom:1.5mm; }
+  .guide .grp{ margin-top:2.5mm; }
+  .law{ margin-top:3.5mm; border:1.8pt solid var(--accent); padding:3mm 4.5mm;
+    font-size:9pt; line-height:1.6; }
+  .law h3{ font-size:10.5pt; font-weight:700; margin-bottom:1.5mm; }
+  .law ul{ margin-left:5mm; }
+  .law li{ margin-top:1mm; }
+</style>
+
+
+<div class="page">
+  <div style="font-size:11pt;letter-spacing:.3em;color:#F0A202;font-weight:700;margin-top:6mm;">HACCP 記録様式セット</div>
+  <h1 style="font-size:31pt;margin-top:4mm;line-height:1.25;">飲食店の衛生管理記録表<br>一般飲食店版＋焼肉店版</h1>
+  <p style="font-size:11.5pt;margin-top:4mm;opacity:.8;">1ヶ月1枚。閉店後に○を書くだけ。A4横・印刷してそのまま使えます。</p>
+
+  <div style="display:flex;gap:8mm;margin-top:7mm;">
+    <div class="guide" style="flex:1;margin:0;">
+      <h3>入っているもの</h3>
+      ・使い方と、守るべき法令<br>
+      ・記入例<br>
+      ・一般衛生管理の記録（一般飲食店版）<br>
+      ・重要管理の記録（一般飲食店版）<br>
+      ・一般衛生管理の記録（焼肉店版）<br>
+      ・重要管理の記録（焼肉店版）
+    </div>
+    <div class="guide" style="flex:1;margin:0;">
+      <h3>どちらの版を使うか</h3>
+      <b>焼肉・ホルモンなど、客席で焼く店</b><br>　→ 焼肉店版<br>
+      <b>それ以外の飲食店</b><br>　→ 一般飲食店版<br><br>
+      両方使っても構いません。要らない項目は線で消し、足りない項目は書き足してください。
+    </div>
+  </div>
+
+  <div class="law" style="margin-top:7mm;">
+    <h3>先に読んでください</h3>
+    この様式は<b>例示</b>です。業種別手引書に指定の様式がある場合は、項目名をそちらに合わせてください。記録すべき内容が同じであれば、書式が違っても差し支えありません。<br>
+    保存期間は手引書に従ってください（1年程度としているものが多いです）。提出の義務はなく、店に置いておけば足ります。
+  </div>
+
+  <div class="foot"><span>HACCP 記録様式セット</span><span>1 / 7</span></div>
+</div>
+<div class="page">
+  <div class="head">
+    <h1>この記録表の使い方<small>最初に1回だけ読めば、あとは毎日○を書くだけです</small></h1>
+  </div>
+
+  <div class="law">
+    <h3>絶対に守ること（食品衛生法）</h3>
+    <ul>
+      <li><b>牛のレバーを生食用として提供することは禁止されています</b>（2012年7月〜）。レバ刺しは出せません。</li>
+      <li><b>豚の肉・内臓（レバーを含む）を生食用として提供することも禁止されています</b>（2015年6月〜）。</li>
+      <li>加熱の目安は<b>中心部まで75℃で1分以上</b>（レバーは63℃で30分以上、または75℃1分以上）。</li>
+      <li>牛肉のユッケ・タルタルなどの<b>生食用食肉は、規格基準を満たす場合のみ</b>提供できます。加工の設備・方法・表示・届出の要件があるので、扱うなら保健所に確認してください。</li>
+    </ul>
+  </div>
+
+  <div class="guide">
+    <h3>1. 毎日やること</h3>
+    閉店後に、1ページ目のその日の列に<b>上から○を入れていくだけ</b>です。1分かかりません。<br>
+    「問題なし」なら○。何かあったときだけ×にして、下の特記事項に1行書きます。<br>
+    2ページ目は、<b>その日に出した分類だけ</b>○を入れます。出していない分類は「／」で構いません。
+  </div>
+
+  <div class="guide">
+    <h3>2. 焼肉店でいちばん大事なのは「トング」です</h3>
+    焼肉店の食中毒は、焼き方より<b>生肉を触った箸やトングで、焼けた肉やサラダを触ること</b>で起きます。<br>
+    だから記録表の分類3を「生肉用トングを出したか」から始めています。<b>ここだけは毎日○がつく状態にしてください。</b><br>
+    テーブルに小さな案内を置いておくと、お客様に毎回口で言わずに済みます。
+  </div>
+
+  <div class="guide">
+    <h3>3. スライサーは分解して洗う</h3>
+    刃と受け皿を外さずに拭くだけだと、隙間に肉が残ります。ここは保健所も見ます。<br>
+    1日1回、閉店後に分解洗浄・消毒して、その記録を残してください。
+  </div>
+
+  <div class="guide">
+    <h3>4. 保存と、保健所に聞かれたとき</h3>
+    書いた紙は<b>ファイルに綴じて店に置いておく</b>だけで構いません。提出の義務はありません。保存期間は手引書に従ってください（1年程度が目安）。<br>
+    <b>×がついた記録が残っていること自体は、問題になりません。</b>気づいて対応した記録が残っていることのほうが評価されます。<br>
+    <b>この様式は例示です。</b>業種別手引書に指定の様式がある場合は、項目名をそちらに合わせてください。
+  </div>
+
+  <div class="foot"><span>使い方</span><span>2 / 7</span></div>
+</div>
+<div class="page">
+  <div class="head"><h1>記入例<small>迷うのは最初の1週間だけです</small></h1></div>
+
+  <table class="cal" style="margin-top:5mm;">
+    <tr><th class="item" style="width:64mm;">確認すること</th><th class="day">1</th><th class="day">2</th><th class="day">3</th><th class="day">4</th><th class="day">5</th><th class="day">6</th><th class="day">7</th><th class="day">8</th><th class="day">9</th><th class="day">10</th></tr>
+    <tr><td class="item"><b>冷蔵庫の温度（10℃以下）</b><span>庫内の温度計を見る</span></td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d" style="text-align:center;font-size:11pt;">／</td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d" style="text-align:center;font-size:11pt;color:#F0A202;font-weight:700;">×</td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d"></td><td class="d"></td><td class="d"></td></tr>
+    <tr><td class="item"><b>手洗いの実施</b><span>作業前・トイレ後・生肉を触った後</span></td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d" style="text-align:center;font-size:11pt;">／</td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d" style="text-align:center;font-size:11pt;">○</td><td class="d"></td><td class="d"></td><td class="d"></td></tr>
+  </table>
+
+  <table class="memo" style="margin-top:3mm;">
+    <tr><th class="w-date">日付</th><th>問題があったこと／どう対応したか</th><th class="w-sign">記入者</th></tr>
+    <tr><td style="text-align:center;">5</td>
+      <td style="font-size:10pt;">朝の時点で冷蔵庫が14℃。扉が半開きだった。閉めて2時間後に8℃を確認。中の食材は見た目とにおいを確認して使用。</td>
+      <td style="text-align:center;">山田</td></tr>
+    <tr><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="guide">
+    <h3>使う記号は3つだけ</h3>
+    <b>○</b> 確認した、問題なし　　<b>×</b> 問題があった（下の特記事項に1行書く）　　<b>／</b> 休業日、その日は該当なし
+  </div>
+
+  <div class="law">
+    <h3>×は、書いたほうがいい</h3>
+    <b>×がついた記録が残っていること自体は、問題になりません。</b>ずっと○だけが並んでいる記録のほうが「本当に見ているのか」と思われます。<br>
+    大事なのは<b>気づいたこと</b>と<b>どう対応したか</b>が残っていることです。上の例のように1行で足ります。
+  </div>
+
+  <div class="foot"><span>記入例</span><span>3 / 7</span></div>
+</div>
+<div class="page">
+  <div class="head">
+    <h1>一般衛生管理の記録
+      <small>一般飲食店版</small></h1>
+    <div class="fields">
+      店名 <span class="fld" style="width:52mm;"></span>
+      <span class="fld" style="width:16mm;"></span> 年 <span class="fld" style="width:12mm;"></span> 月<br>
+      衛生管理者 <span class="fld" style="width:38mm;"></span>
+    </div>
+  </div>
+
+  <table class="cal">
+    <tr>
+      <th class="item">確認すること</th>
+      <th class="day">1</th><th class="day">2</th><th class="day">3</th><th class="day">4</th><th class="day">5</th><th class="day">6</th><th class="day">7</th><th class="day">8</th><th class="day">9</th><th class="day">10</th><th class="day">11</th><th class="day">12</th><th class="day">13</th><th class="day">14</th><th class="day">15</th><th class="day">16</th><th class="day">17</th><th class="day">18</th><th class="day">19</th><th class="day">20</th><th class="day">21</th><th class="day">22</th><th class="day">23</th><th class="day">24</th><th class="day">25</th><th class="day">26</th><th class="day">27</th><th class="day">28</th><th class="day">29</th><th class="day">30</th><th class="day">31</th>
+    </tr>
+    <tr><td class="item"><b>原材料の受入の確認</b><span>外観・におい・期限・配送温度</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>冷蔵庫の温度（10℃以下）</b><span>庫内の温度計を見る</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>冷凍庫の温度（−15℃以下）</b><span>庫内の温度計を見る</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>交差汚染・二次汚染の防止</b><span>生肉・生魚とその他で、まな板と包丁を分けた</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>器具等の洗浄・消毒・殺菌</b><span>まな板・包丁・ふきん・スポンジ</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>トイレの洗浄・消毒</b><span>ドアノブ・水栓も含む</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>従業員の健康管理</b><span>下痢・嘔吐・発熱・手の傷の有無を確認した</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>手洗いの実施</b><span>作業前・トイレ後・生肉を触った後</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr>
+  </table>
+
+  <div class="legend">
+    <span><b>○</b>＝問題なし　<b>×</b>＝問題あり（下の特記事項に書く）　<b>／</b>＝休業日</span>
+    <span>記入は<b>1日1回</b>、閉店後にまとめてで構いません。</span>
+  </div>
+
+  <table class="memo">
+    <tr>
+      <th class="w-date">日付</th>
+      <th>問題があったこと／どう対応したか</th>
+      <th class="w-sign">記入者</th>
+    </tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="foot"><span>一般飲食店版｜一般衛生管理</span><span>4 / 7</span></div>
+</div>
+<div class="page">
+  <div class="head">
+    <h1>重要管理（加熱・冷却・保管）の記録
+      <small>一般飲食店版／メニューを3つに分けて、その日つくったものだけ確認します</small></h1>
+    <div class="fields">
+      店名 <span class="fld" style="width:52mm;"></span>
+      <span class="fld" style="width:16mm;"></span> 年 <span class="fld" style="width:12mm;"></span> 月<br>
+      衛生管理者 <span class="fld" style="width:38mm;"></span>
+    </div>
+  </div>
+
+  <table class="cal">
+    <tr>
+      <th class="item">確認すること</th>
+      <th class="day">1</th><th class="day">2</th><th class="day">3</th><th class="day">4</th><th class="day">5</th><th class="day">6</th><th class="day">7</th><th class="day">8</th><th class="day">9</th><th class="day">10</th><th class="day">11</th><th class="day">12</th><th class="day">13</th><th class="day">14</th><th class="day">15</th><th class="day">16</th><th class="day">17</th><th class="day">18</th><th class="day">19</th><th class="day">20</th><th class="day">21</th><th class="day">22</th><th class="day">23</th><th class="day">24</th><th class="day">25</th><th class="day">26</th><th class="day">27</th><th class="day">28</th><th class="day">29</th><th class="day">30</th><th class="day">31</th>
+    </tr>
+    <tr class="sec"><td colspan="32">分類1　加熱しないで出すもの（刺身・冷奴・サラダなど）</td></tr><tr><td class="item"><b>冷蔵庫から出したら、すぐ提供した</b><span>常温に置きっぱなしにしていない</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="sec"><td colspan="32">分類2　加熱して熱いまま出すもの（焼き物・揚げ物・炒め物・汁物など）</td></tr><tr><td class="item"><b>中心部まで火が通ったことを確認した</b><span>見た目・肉汁・温度計のいずれかで確認（目安 中心75℃1分以上）</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="sec"><td colspan="32">分類3　加熱後に冷ますもの・作りおき・再加熱するもの（煮物・仕込み品など）</td></tr><tr><td class="item"><b>加熱後、すばやく冷やして冷蔵した</b></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>提供前に、しっかり再加熱した</b><span>再加熱しないものは「／」</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="sec"><td colspan="32">そのほか</td></tr><tr><td class="item"><b>仕込み品に日付を書いた</b><span>つくった日が分かるようにした</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>提供までの保管温度を確認した</b><span>冷たいものは冷たく、温かいものは温かく</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr>
+  </table>
+
+  <div class="legend">
+    <span><b>○</b>＝問題なし　<b>×</b>＝問題あり　<b>／</b>＝その日つくっていない／休業日</span>
+    <span>温度を測った日は、数字を書いておくとより確実です。</span>
+  </div>
+
+  <table class="memo">
+    <tr>
+      <th class="w-date">日付</th>
+      <th>問題があったこと／どう対応したか（出さずに廃棄した・再加熱した など）</th>
+      <th class="w-sign">記入者</th>
+    </tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="foot"><span>一般飲食店版｜重要管理</span><span>5 / 7</span></div>
+</div>
+<div class="page">
+  <div class="head">
+    <h1>一般衛生管理の記録<small>焼肉店版</small></h1>
+    <div class="fields">
+      店名 <span class="fld" style="width:52mm;"></span>
+      <span class="fld" style="width:16mm;"></span> 年 <span class="fld" style="width:12mm;"></span> 月<br>
+      衛生管理者 <span class="fld" style="width:38mm;"></span>
+    </div>
+  </div>
+  <table class="cal">
+    <tr><th class="item">確認すること</th><th class="day">1</th><th class="day">2</th><th class="day">3</th><th class="day">4</th><th class="day">5</th><th class="day">6</th><th class="day">7</th><th class="day">8</th><th class="day">9</th><th class="day">10</th><th class="day">11</th><th class="day">12</th><th class="day">13</th><th class="day">14</th><th class="day">15</th><th class="day">16</th><th class="day">17</th><th class="day">18</th><th class="day">19</th><th class="day">20</th><th class="day">21</th><th class="day">22</th><th class="day">23</th><th class="day">24</th><th class="day">25</th><th class="day">26</th><th class="day">27</th><th class="day">28</th><th class="day">29</th><th class="day">30</th><th class="day">31</th></tr>
+    <tr><td class="item"><b>食肉の受入の確認</b><span>配送温度・期限・包装の破れ・においを確認した</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>冷蔵庫の温度（10℃以下）</b><span>庫内の温度計を見る</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>冷凍庫の温度（−15℃以下）</b><span>庫内の温度計を見る</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>生肉専用の器具を使い分けた</b><span>まな板・包丁・バット。野菜やキムチとは分ける</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>スライサー・ミンサーの分解洗浄・消毒</b><span>刃・受け皿まで外して洗い、消毒した</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>トング・取り箸の準備と洗浄消毒</b><span>生肉用トングを客数分そろえた</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>ロースター・網・受け皿・排気の清掃</b><span>網は使い回さず、汚れたら交換</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>トイレの洗浄・消毒</b><span>ドアノブ・水栓も含む</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>従業員の健康管理</b><span>下痢・嘔吐・発熱・手の傷の有無を確認した</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>手洗いの実施</b><span>作業前・トイレ後・生肉を触った後は必ず</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr>
+  </table>
+  <div class="legend"><span><b>○</b>＝問題なし　<b>×</b>＝問題あり（下の特記事項に書く）　<b>／</b>＝休業日</span><span>記入は<b>1日1回</b>、閉店後にまとめてで構いません。</span></div>
+  <table class="memo">
+    <tr><th class="w-date">日付</th><th>問題があったこと／どう対応したか</th><th class="w-sign">記入者</th></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+  </table>
+  <div class="foot"><span>焼肉店版｜一般衛生管理</span><span>6 / 7</span></div>
+</div>
+<div class="page">
+  <div class="head">
+    <h1>重要管理（加熱・生肉の扱い）の記録<small>焼肉店版／メニューを4つに分けて、その日出したものだけ確認します</small></h1>
+    <div class="fields">
+      店名 <span class="fld" style="width:52mm;"></span>
+      <span class="fld" style="width:16mm;"></span> 年 <span class="fld" style="width:12mm;"></span> 月<br>
+      衛生管理者 <span class="fld" style="width:38mm;"></span>
+    </div>
+  </div>
+  <table class="cal">
+    <tr><th class="item">確認すること</th><th class="day">1</th><th class="day">2</th><th class="day">3</th><th class="day">4</th><th class="day">5</th><th class="day">6</th><th class="day">7</th><th class="day">8</th><th class="day">9</th><th class="day">10</th><th class="day">11</th><th class="day">12</th><th class="day">13</th><th class="day">14</th><th class="day">15</th><th class="day">16</th><th class="day">17</th><th class="day">18</th><th class="day">19</th><th class="day">20</th><th class="day">21</th><th class="day">22</th><th class="day">23</th><th class="day">24</th><th class="day">25</th><th class="day">26</th><th class="day">27</th><th class="day">28</th><th class="day">29</th><th class="day">30</th><th class="day">31</th></tr>
+    <tr class="sec"><td colspan="32">分類1　加熱しないで出すもの（キムチ・ナムル・サラダ・冷麺・アイスなど）</td></tr><tr><td class="item"><b>冷蔵庫から出したら、すぐ提供した</b><span>常温に置きっぱなしにしていない</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="sec"><td colspan="32">分類2　厨房で加熱して出すもの（スープ・クッパ・石焼・厨房で焼くもの）</td></tr><tr><td class="item"><b>中心部まで火が通ったことを確認した</b><span>目安 中心温度75℃で1分以上</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="sec"><td colspan="32">分類3　お客様が客席で焼くもの（この店の主力。ここが一番大事）</td></tr><tr><td class="item"><b>生肉をつかむ専用のトング・取り箸を一緒に出した</b><span>食べる箸で生肉を触らせない</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>「よく焼いてから食べる」ことをお客様に伝えた</b><span>口頭またはテーブルの案内で</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>網・鉄板が汚れていないか見て、必要なら交換した</b></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="sec"><td colspan="32">分類4　加熱してから冷ますもの・作りおき（タレ・スープ・ナムル・仕込み）</td></tr><tr><td class="item"><b>加熱後、すばやく冷やして冷蔵した</b></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr><td class="item"><b>仕込み品に日付を書いた</b><span>つくった日が分かるようにした</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr><tr class="sec"><td colspan="32">毎日かならず確認すること（法令）</td></tr><tr><td class="item"><b>牛レバー・豚肉・豚の内臓を、生では出していない</b><span>加熱用として提供した</span></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td><td class="d"></td></tr>
+  </table>
+  <div class="legend"><span><b>○</b>＝問題なし　<b>×</b>＝問題あり　<b>／</b>＝その日出していない／休業日</span><span>温度を測った日は、数字を書いておくとより確実です。</span></div>
+  <table class="memo">
+    <tr><th class="w-date">日付</th><th>問題があったこと／どう対応したか（出さずに廃棄した・焼き直した など）</th><th class="w-sign">記入者</th></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+  </table>
+  <div class="foot"><span>焼肉店版｜重要管理</span><span>7 / 7</span></div>
+</div>
