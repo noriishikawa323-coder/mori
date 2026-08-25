@@ -1114,3 +1114,134 @@ def nyukyo():
 
 
 PRODUCTS.update({"nyukyo": ("入居時チェック表", nyukyo)})
+
+
+# =================== 11. 診察前の3分シート ===================
+def shinsatsu():
+    p1 = '''<h1>診察前の3分シート<small>診察室に入ってから思い出しても、もう遅い。待合室で埋める1枚です</small></h1>
+
+  <div class="band">診察室で、言おうと思っていたことを言えずに出てきたことはありませんか。<br>
+    <b>本人の記憶力の問題ではありません。</b>診察が短いからです。<br>
+    厚生労働省の受療行動調査では、<b>診察時間が3分未満だった外来患者が1割以上</b>います。</div>
+
+  <div class="box accentbox">
+    <h3>いつ書くか、決めてあります</h3>
+    <b>受付を済ませて、待合室に座った直後です。</b><br>
+    家で書こうとすると、書きません。順番が来るまでの時間は、どうせ空いています。
+    <b>埋めるのは5項目だけです。3分で終わります。</b>
+  </div>
+
+  <div class="box">
+    <h3>この5つを書きます</h3>
+    <b>① いつから</b>　日付で書いてください。「最近」「しばらく前」では、医師は判断できません<br>
+    <b>② どんなふうに</b>　痛み方・出方。表現の例は次のページに載せてあります<br>
+    <b>③ 何をすると悪くなるか／楽になるか</b>　ここが診断で一番効きます<br>
+    <b>④ 前回の薬はどうだったか</b>　効いた・効かない・飲むのをやめた。<b>やめたことは言っていい</b>です<br>
+    <b>⑤ 今日いちばん聞きたいこと（1つだけ）</b>　複数書くと、全部聞けずに終わります
+  </div>
+
+  <div class="box">
+    <h3>「④ 薬をやめた」を言えない人が多い</h3>
+    飲んでいないのに「飲んでいます」と答えると、<b>効かない薬だと判断されて、より強い薬が出ます。</b>
+    合わなかった、飲み忘れた、高かった。理由は何でも構いません。
+    <b>事実だけ言えば、そこから選び直してくれます。</b>
+  </div>
+
+  <div class="box">
+    <h3>聞き忘れたときの受け皿を、2つ用意してあります</h3>
+    <b>1. 薬のことは、薬局で聞けます。</b>飲み合わせ、副作用、飲む時間。薬剤師は答える立場の人です<br>
+    <b>2. それ以外は、3ページ目の「次回聞くこと」に書いて持ち越します。</b>
+    次の診察で最初に出せば、それで足ります
+  </div>
+
+  <div class="box" style="margin-top:auto;">
+    <h3>持ち物（出る前に、ここだけ見てください）</h3>
+    <span class="cb"></span>保険証・マイナ保険証　　<span class="cb"></span>診察券　　
+    <span class="cb"></span>お薬手帳　　<span class="cb"></span>今飲んでいる薬そのもの（袋ごと）<br>
+    <span class="note">薬の名前は覚えなくて構いません。<b>袋ごと持っていけば、それが一番正確です。</b></span>
+  </div>'''
+
+    def blank(h):
+        return f'<div style="border-bottom:1pt solid var(--line);height:{h};"></div>'
+
+    q = ""
+    for n, (t, sub, lines, h) in enumerate([
+            ("① いつから", "日付で。思い出せなければ「◯月ごろ」でも構いません", 1, "10mm"),
+            ("② どんなふうに", "下の言葉から選んで丸をつけても構いません", 3, "10mm"),
+            ("③ 何をすると悪くなる／楽になる", "動いたとき・食後・朝だけ・横になると楽 など", 3, "10mm"),
+            ("④ 前回の薬はどうだったか", "効いた／効かない／やめた／副作用が出た", 2, "10mm"),
+            ("⑤ 今日いちばん聞きたいこと", "1つだけ書いてください", 2, "10mm")], 1):
+        q += (f'<div style="margin-top:{"2.5mm" if n > 1 else "3mm"};">'
+              f'<div style="font-size:11pt;font-weight:700;">{t}'
+              f'<span style="font-size:8.6pt;font-weight:400;opacity:.65;">　{sub}</span></div>'
+              + "".join(blank(h) for _ in range(lines)) + '</div>')
+
+    p2 = f'''<div class="head">
+    <div><h1 style="font-size:21pt;">診察前に書く<small>この面をコピーして、通院のたびに1枚使ってください</small></h1></div>
+    <div class="fields">受診日 <span class="fld" style="width:12mm;"></span> 年
+      <span class="fld" style="width:9mm;"></span> 月
+      <span class="fld" style="width:9mm;"></span> 日<br>
+      病院・科 <span class="fld" style="width:38mm;"></span></div>
+  </div>
+
+  {q}
+
+  <div class="box" style="margin-top:3.5mm;padding:2.5mm 4.5mm;">
+    <h3 style="font-size:10.5pt;">② が書けないときは、この中から選んでください</h3>
+    <div style="line-height:1.9;">
+      <b>痛み方</b>　ズキズキ ／ ガンガン ／ チクチク ／ 締めつけられる ／ 焼けるよう ／ 重い ／ しびれる<br>
+      <b>出方</b>　ずっと続く ／ 波がある ／ 急に来て急に治まる ／ 決まった時間だけ ／ だんだん強くなる<br>
+      <b>強さ</b>　10段階で（10＝これまでで一番痛い）　今日は<span class="fld" style="width:12mm;"></span>くらい
+    </div>
+  </div>
+
+  <div class="box accentbox" style="margin-top:2.5mm;padding:2.5mm 4.5mm;line-height:1.6;">
+    <h3 style="font-size:10.5pt;">診察室では、この紙を見せて構いません</h3>
+    読み上げようとすると、緊張して飛びます。<b>「これ、書いてきました」と渡すのが一番早いです。</b>
+    嫌がる医師はまずいません。短い時間で要点が分かるからです。
+  </div>
+
+  <div class="box" style="margin-top:auto;padding:2.5mm 4.5mm;line-height:1.6;">
+    <h3 style="font-size:10.5pt;">診察のあと、忘れないうちに1行だけ</h3>
+    言われた病名・次にすること・次回の予約日を、次のページに1行で書き写してください。
+    <b>会計を待っている間で構いません。</b>家に着くころには、半分忘れています。
+  </div>'''
+
+    rec = "".join('<tr><td style="height:8.6mm;"></td><td></td><td></td><td></td><td></td></tr>'
+                  for _ in range(16))
+
+    p3 = f'''<h1 style="font-size:21pt;">受診の記録<small>1回1行。次に別の病院にかかるとき、この紙がそのまま説明になります</small></h1>
+
+  <table style="margin-top:4mm;">
+    <tr class="hl"><th style="width:22mm;">受診日</th><th style="width:34mm;">病院・科</th>
+      <th>言われたこと（病名・検査結果）</th>
+      <th style="width:42mm;">出た薬</th><th style="width:22mm;">次回</th></tr>
+    {rec}
+  </table>
+
+  <div class="box accentbox" style="margin-top:3.5mm;padding:2.5mm 4.5mm;">
+    <h3 style="font-size:10.5pt;">次回、聞くこと</h3>
+    <span class="note">今日聞けなかったこと、あとから気になったことを、思い出したときに書いてください。</span>
+    <div style="border-bottom:1pt solid var(--line);height:8mm;"></div>
+    <div style="border-bottom:1pt solid var(--line);height:8mm;"></div>
+    <div style="border-bottom:1pt solid var(--line);height:8mm;"></div>
+  </div>
+
+  <div class="box" style="margin-top:2.5mm;padding:2.5mm 4.5mm;line-height:1.6;">
+    <h3 style="font-size:10.5pt;">この記録が、いちばん効く場面</h3>
+    <b>1. 別の病院・救急にかかるとき。</b>「いつ・どこで・何と言われて・何を飲んでいるか」を一度に渡せます<br>
+    <b>2. 家族が代わりに説明するとき。</b>付き添いの人が持っていれば、本人が答えられなくても済みます<br>
+    <b>3. 医療費控除を出すとき。</b>受診日が並んでいると、領収書の抜けに気づけます
+  </div>
+
+  <div class="box" style="margin-top:auto;padding:2.5mm 4.5mm;line-height:1.6;">
+    <h3 style="font-size:10.5pt;">書く回数</h3>
+    <b>通院した日だけです。</b>通院がない月は、何も書きません。
+  </div>'''
+
+    return [page(p1, "診察前の3分シート", "1 / 3　使い方"),
+            page(p2, "診察前の3分シート", "2 / 3　診察前に書く（コピーして使う面）"),
+            page(p3, "診察前の3分シート", "3 / 3　受診の記録")]
+
+
+PRODUCTS.update({"shinsatsu": ("診察前の3分シート", shinsatsu)})
