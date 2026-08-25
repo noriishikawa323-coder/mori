@@ -965,3 +965,152 @@ def hojo():
 
 
 PRODUCTS.update({"hojo": ("補助金もらい忘れリスト", hojo)})
+
+
+# =================== 10. 入居時チェック表 ===================
+def nyukyo():
+    p1 = '''<h1>入居時チェック表<small>退去のときに「これは元からありました」と言えるようにしておく1枚です</small></h1>
+
+  <div class="band">退去費用でもめる理由は、ひとつだけです。<br>
+    <b>入居したときの状態を、誰も記録していないからです。</b><br>
+    傷がいつからあったのか分からなければ、<b>あなたがつけたことになります。</b></div>
+
+  <div class="box accentbox">
+    <h3>今日やることは3つです</h3>
+    <ol class="steps" style="margin-top:1mm;">
+      <li><b>荷物を入れる前に、部屋を撮る。</b>家具を置いたら、その裏はもう撮れません。</li>
+      <li><b>この表に、傷・汚れの場所を書く。</b>見る場所は印刷してあります。順番に見るだけです。</li>
+      <li><b>管理会社にメールで送る。</b>送った日時が、そのまま記録になります。</li>
+    </ol>
+  </div>
+
+  <div class="box">
+    <h3>法律は、借りている側にあります</h3>
+    <b>民法621条</b>（2020年4月施行）は、<b>通常の使用でついた損耗と経年変化は、借主の原状回復義務に含まれない</b>と定めています。
+    国土交通省の「原状回復をめぐるトラブルとガイドライン」も同じ考え方です。<br>
+    もめるのは、そこではありません。<b>「その傷が、通常の使用によるものか、あなたがつけたものか」</b>で争いになります。
+    だから、入居した日の状態を残しておく必要があります。
+  </div>
+
+  <div class="box">
+    <h3>撮り方は、この4つだけ守ってください</h3>
+    <b>1. 全体 → 寄り、の順にセットで撮る。</b>寄りだけだと、どこの傷か分からなくなります。<br>
+    <b>2. 傷の横に、定規かスマホを置く。</b>大きさが分かります。<br>
+    <b>3. 日付を写し込む必要はありません。</b>写真の日時と、送信メールの日付が残ります。<br>
+    <b>4. 最後に、部屋を一周する動画を1本撮る。</b>撮り忘れた場所を、あとから拾えます。
+  </div>
+
+  <div class="box accentbox">
+    <h3>期限があります。契約書を今すぐ見てください</h3>
+    多くの契約で、<b>入居後2週間以内</b>に「入居時確認書」を提出することになっています。
+    ここを過ぎると、<b>「入居時には無かった傷」として扱われやすくなります。</b><br>
+    <div style="margin-top:2mm;font-size:10.5pt;">
+      提出期限　<span class="fld" style="width:14mm;"></span> 年
+      <span class="fld" style="width:10mm;"></span> 月
+      <span class="fld" style="width:10mm;"></span> 日まで　／　
+      提出先（担当者名）<span class="fld" style="width:44mm;"></span></div>
+  </div>
+
+  <div class="box" style="margin-top:auto;">
+    <h3>この表を書くのは、一生に一度、入居日だけです</h3>
+    毎月も、毎週も、書きません。<b>今日30分かけるかどうかで、退去のときに数万円変わります。</b>
+  </div>'''
+
+    secs = [
+        ("玄関・廊下", ["玄関ドアの内側（へこみ・キズ）", "たたき・シューズボックスの中",
+                    "廊下の壁と床（家具を運んだ跡）"]),
+        ("居室（洋室・和室）", ["壁 4面（画びょう跡・下地のへこみ・日焼け）", "床のキズ・へこみ・きしみ",
+                        "天井のシミ・雨漏りの跡", "窓ガラス・サッシ・網戸の破れ",
+                        "エアコン（動くか・カビ臭くないか）", "押入れ・クローゼットの中"]),
+        ("キッチン", ["シンク・コンロまわりの焦げと汚れ", "換気扇の油汚れ",
+                   "床の油じみ", "扉・取っ手のガタつき"]),
+        ("浴室・洗面所", ["浴槽と床のカビ・ひび", "鏡・棚のくもりとサビ",
+                    "洗面台の下（水漏れの跡）", "浴室の換気扇（動くか）"]),
+        ("トイレ", ["便器と床のよごれ・ひび", "ペーパーホルダー・タオル掛けのぐらつき"]),
+        ("その他", ["ベランダの床・手すり・排水口", "建具のガタつき・鍵のかかり具合"]),
+    ]
+    body = ""
+    for name, items in secs:
+        body += (f'<tr><td colspan="4" style="background:rgba(240,162,2,.18);font-weight:700;'
+                 f'font-size:9.4pt;height:5.4mm;padding-left:2mm;">{name}</td></tr>')
+        for it in items:
+            body += (f'<tr><td style="height:7mm;font-size:9pt;padding-left:2mm;">{it}</td>'
+                     f'<td style="text-align:center;font-size:9pt;">有 ・ 無</td>'
+                     f'<td></td><td style="text-align:center;"><span class="cb"></span></td></tr>')
+
+    p2 = f'''<div class="head">
+    <div><h1 style="font-size:21pt;">見る場所チェック<small>上から順に見るだけです。「無」でも、写真は撮ってください</small></h1></div>
+    <div class="fields">物件名 <span class="fld" style="width:40mm;"></span><br>
+      入居日 <span class="fld" style="width:14mm;"></span> 年
+      <span class="fld" style="width:10mm;"></span> 月
+      <span class="fld" style="width:10mm;"></span> 日</div>
+  </div>
+
+  <table style="margin-top:4mm;">
+    <tr class="hl"><th>見る場所</th><th style="width:22mm;">傷・汚れ</th>
+      <th style="width:62mm;">あった場合、その内容</th><th style="width:16mm;">写真</th></tr>
+    {body}
+  </table>
+
+  <div class="box" style="margin-top:3mm;padding:2.5mm 4.5mm;line-height:1.6;">
+    <h3 style="font-size:10.5pt;">「無」の場所こそ、写真が要ります</h3>
+    退去時にもめるのは、<b>入居時に何も無かった場所に、傷ができていたとき</b>ではありません。
+    <b>元からあった傷を、無かったことにされるとき</b>です。
+    だから「有」だけ撮っても足りません。<b>全部の場所を1枚ずつ撮ってください。</b>
+  </div>'''
+
+    tai = [("壁のクロス（壁紙）", "6年", "6年住めば、借主の負担は原則1円まで下がります"),
+           ("カーペット・クッションフロア", "6年", "同上"),
+           ("流し台", "5年", ""),
+           ("エアコン・ガスレンジなどの設備", "6年", ""),
+           ("便器・洗面台などの給排水設備", "15年", ""),
+           ("ふすま紙・障子紙・畳表", "考慮しない", "消耗品の扱い。破れば張替費用の負担が生じます"),
+           ("フローリング", "考慮しない", "部分補修の場合。全面張替えは建物の年数で見ます"),
+           ("木製建具・柱", "考慮しない", "")]
+    trow = "".join(f'<tr><td style="height:7.2mm;font-size:9.4pt;padding-left:2mm;">{a}</td>'
+                   f'<td style="text-align:center;font-size:9.4pt;"><b>{b}</b></td>'
+                   f'<td style="font-size:8.8pt;">{c}</td></tr>' for a, b, c in tai)
+
+    p3 = f'''<h1 style="font-size:21pt;">退去のときに、この紙を出します<small>請求書が来てからでは遅い。出す順番と、言い方を決めておきます</small></h1>
+
+  <div class="box accentbox">
+    <h3>立会いの日に、その場でサインしないでください</h3>
+    立会いで見積書や確認書を出され、その場で署名を求められることがあります。
+    <b>「持ち帰って確認します」と言って構いません。</b>署名すると、金額に同意したと扱われることがあります。
+  </div>
+
+  <div class="box">
+    <h3>言い方は、これだけ覚えておけば足ります</h3>
+    <div style="margin-top:1.5mm;font-size:10.5pt;line-height:1.8;border-left:2.6pt solid var(--accent);padding-left:4mm;">
+      「この傷は<b>入居時からありました。</b><br>
+      入居日に撮った写真と、<b>◯月◯日に御社へ送ったメール</b>が手元にあります。」</div>
+    <div style="margin-top:2mm;">写真があると分かった時点で、話が終わることがほとんどです。争う必要はありません。</div>
+  </div>
+
+  <div style="margin-top:3.5mm;font-size:10.5pt;font-weight:700;">経過年数の考え方（国土交通省ガイドライン）</div>
+  <div class="note" style="margin-top:1mm;">借主の過失で傷つけた場合でも、<b>年数が経つほど負担は下がります。</b>「新品に戻す費用の全額」を払う必要はありません。</div>
+  <table style="margin-top:2mm;">
+    <tr class="hl"><th>部位</th><th style="width:24mm;">耐用年数</th><th style="width:72mm;">備考</th></tr>
+    {trow}
+  </table>
+
+  <div class="box" style="margin-top:3mm;padding:2.5mm 4.5mm;line-height:1.6;">
+    <h3 style="font-size:10.5pt;">それでも折り合わないとき</h3>
+    <b>1.</b> 契約書の「特約」を読む。通常損耗まで借主負担とする特約は、内容によっては無効と判断されることがあります<br>
+    <b>2.</b> 自治体の消費生活センター（局番なし <b>188</b>）に相談する。無料です<br>
+    <b>3.</b> <b>敷金の返還を求める権利の時効は5年です。</b>退去した直後に決着しなくても、すぐに諦める必要はありません
+  </div>
+
+  <div class="box" style="margin-top:auto;padding:2.5mm 4.5mm;line-height:1.6;">
+    <h3 style="font-size:10.5pt;">保存場所を、今日決めてください</h3>
+    写真とこの紙は、<b>退去する日まで（数年後）</b>必要になります。
+    スマホの中だけに置くと、機種変更で消えます。<br>
+    <div style="margin-top:1.5mm;">写真の保存先（クラウド名など）<span class="fld" style="width:60mm;"></span></div>
+  </div>'''
+
+    return [page(p1, "入居時チェック表", "1 / 3　使い方と撮り方"),
+            page(p2, "入居時チェック表", "2 / 3　見る場所チェック"),
+            page(p3, "入居時チェック表", "3 / 3　退去のときに使う")]
+
+
+PRODUCTS.update({"nyukyo": ("入居時チェック表", nyukyo)})
