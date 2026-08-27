@@ -1245,3 +1245,139 @@ def shinsatsu():
 
 
 PRODUCTS.update({"shinsatsu": ("診察前の3分シート", shinsatsu)})
+
+
+# =================== 12. 家電の買い替え年表 ===================
+def kaden():
+    p1 = '''<h1>家電の買い替え年表<small>壊れてから買うと高い。先に「いつ買い替えるか」を書いておく1枚です</small></h1>
+
+  <div class="band">冷蔵庫が止まった日に、冷蔵庫は選べません。<br>
+    <b>中身が傷むので、その日に買える物を買うことになります。</b><br>
+    高い物を買わされるのではなく、<b>選ぶ時間がないから高くつきます。</b></div>
+
+  <div class="box accentbox">
+    <h3>寿命より先に「修理できない日」が来ます</h3>
+    メーカーは、修理用の部品をいつまでも持っていません。
+    <b>補修用性能部品の保有期間</b>といって、目安はこうなっています。<br>
+    <div style="margin-top:1.5mm;line-height:1.9;">
+      <b>エアコン・冷蔵庫 … 9年</b>　／　<b>テレビ・電子レンジ … 8年</b>　／　
+      <b>洗濯機・炊飯器・掃除機 … 6年</b></div>
+    <div style="margin-top:1.5mm;">これを過ぎると、<b>直せる故障でも「部品がありません」で終わります。</b>
+    メーカーによって年数は違うので、正確な年数は取扱説明書の最後のページに書いてあります。</div>
+  </div>
+
+  <div class="box">
+    <h3>しかも、この年数は「買った年から」ではありません</h3>
+    保有期間は<b>「その製品の製造を打ち切ったときから」</b>数えます。<br>
+    型落ちを安く買った場合、<b>買った時点ですでに何年か過ぎています。</b>
+    安く買えた分、修理できる期間は短い。そう思っておいてください。
+  </div>
+
+  <div class="box">
+    <h3>この紙でやることは、2つだけです</h3>
+    <ol class="steps" style="margin-top:1mm;">
+      <li><b>今ある家電の「買った年」を書く。</b>思い出せなければ「引っ越した年」で構いません</li>
+      <li><b>買った年 ＋ 目安の年数 ＝ 買い替えの年</b>を書く。これで、慌てる年が先に分かります</li>
+    </ol>
+  </div>
+
+  <div class="box">
+    <h3>買った年が分からないときの調べ方</h3>
+    <b>1.</b> 本体の側面か背面のシールに<b>製造年</b>が書いてあります（冷蔵庫は内側の壁面）<br>
+    <b>2.</b> ネット通販で買ったなら、注文履歴に残っています<br>
+    <b>3.</b> どうしても分からなければ<b>「たぶん◯年ごろ」で構いません。</b>1年ずれても使えます
+  </div>
+
+  <div class="box" style="margin-top:auto;">
+    <h3>開く回数</h3>
+    <b>年に1回。</b>年末か、年度の初めに一度開いて、買い替えの年が近いものを確認するだけです。
+  </div>'''
+
+    guide = [("エアコン", "9年"), ("冷蔵庫", "9年"), ("テレビ", "8年"),
+             ("電子レンジ", "8年"), ("洗濯機", "6年"), ("炊飯器", "6年"), ("掃除機", "6年")]
+    g = "　／　".join(f'<b>{a}</b> {b}' for a, b in guide)
+
+    body = rows(18, 6, "8.6mm")
+    p2 = f'''<div class="head">
+    <div><h1 style="font-size:21pt;">家電の一覧<small>1台1行。全部埋めなくて構いません。大きい物から書いてください</small></h1></div>
+    <div class="fields">書いた日 <span class="fld" style="width:14mm;"></span> 年
+      <span class="fld" style="width:10mm;"></span> 月</div>
+  </div>
+
+  <div class="note" style="margin-top:3mm;line-height:1.9;">部品保有期間の目安　{g}</div>
+
+  <table style="margin-top:2mm;">
+    <tr class="hl"><th style="width:30mm;">品目</th><th style="width:38mm;">メーカー・型番</th>
+      <th style="width:20mm;">買った年</th><th style="width:26mm;">保証の期限</th>
+      <th style="width:24mm;">買い替えの年</th><th>気になっていること（音・冷え・水漏れ）</th></tr>
+    {body}
+  </table>
+
+  <div class="box accentbox" style="margin-top:3mm;padding:2.5mm 4.5mm;line-height:1.6;">
+    <h3 style="font-size:10.5pt;">「保証の期限」の欄について</h3>
+    <b>保証は2つあります。</b>メーカー保証（ふつう1年）と、店で付けた延長保証（5年・10年など）。<br>
+    <b>延長保証は、加入したこと自体を忘れる人がほとんどです。</b>
+    有償で直した後に「保証に入っていた」と気づいても、戻りません。
+    <b>今日ここに書いて、保証書の場所も決めてください。</b>
+  </div>
+
+  <div class="box" style="margin-top:2.5mm;padding:2.5mm 4.5mm;line-height:1.6;">
+    <h3 style="font-size:10.5pt;">いちばん右の欄が、予告になります</h3>
+    「最近うるさい」「氷ができるのが遅い」「脱水で止まる」。
+    <b>家電は、いきなり壊れる前に必ず変な音や動きが出ます。</b>
+    ここに書いておくと、次に開いたときに「そういえば去年から言っていた」と分かります。
+  </div>'''
+
+    p3 = f'''<h1 style="font-size:21pt;">買い替えの前に決めておくこと<small>金額と、捨て方。この2つで慌てます</small></h1>
+
+  <div class="box accentbox">
+    <h3>まず、いくら用意しておくか</h3>
+    2ページ目を見て、<b>これから3年以内に買い替えの年が来るもの</b>を書き出してください。
+    <table style="margin-top:2mm;">
+      <tr class="hl"><th style="width:52mm;">品目</th><th style="width:34mm;">買い替えの年</th><th>だいたいの金額</th></tr>
+      {rows(4, 3, "8.4mm")}
+      <tr class="sum"><td>合計</td><td></td><td></td></tr>
+    </table>
+    <div style="margin-top:2.5mm;font-size:11pt;line-height:1.9;">
+      合計　<span class="fld" style="width:26mm;"></span> 円　÷　36ヶ月　＝　
+      <b>毎月よけておく額　<span class="fld" style="width:24mm;"></span> 円</b></div>
+    <div class="note" style="margin-top:1mm;">この額を毎月別にしておけば、その年が来ても、選ぶ時間があります。</div>
+  </div>
+
+  <div class="box">
+    <h3>捨てるのに、お金と手間がかかります</h3>
+    <b>エアコン・テレビ・冷蔵庫・洗濯機の4品目</b>は、家電リサイクル法の対象です。
+    ゴミには出せません。<b>リサイクル料金と、運ぶための費用がかかります。</b><br>
+    買い替えなら、<b>買う店に引き取りを頼むのが一番早い</b>です（購入時に伝える必要があります）。
+    処分だけなら、自治体の案内する方法か、指定の引取場所に持ち込みます。
+  </div>
+
+  <div class="box">
+    <h3>直すか、買い替えるか。この3つで決めてください</h3>
+    <b>1. 部品保有期間を過ぎている</b>　→　買い替え。次に別の場所が壊れても、もう直せません<br>
+    <b>2. 修理の見積が、新品の半額を超えた</b>　→　買い替え。同じ金額で保証が新しく付きます<br>
+    <b>3. 出張費と診断料は、直さなくてもかかることがあります</b>　→　電話の時点で
+    <b>「見るだけでいくらかかりますか」</b>と先に聞いてください
+  </div>
+
+  <div class="box">
+    <h3>買う時期を、少しずらすだけで変わります</h3>
+    <b>エアコンを7月に買うのが、いちばん高くつきます。</b>本体も高く、工事も1〜2週間待ちます。<br>
+    暑くなる前、寒くなる前。<b>「まだ動いているうち」に動くのが唯一の方法</b>です。
+    2ページ目に買い替えの年を書いておくのは、そのためです。
+  </div>
+
+  <div class="box" style="margin-top:auto;">
+    <h3>今日、ここだけ決めてください</h3>
+    <div style="line-height:2;">
+      保証書・取扱説明書の保管場所　<span class="fld" style="width:64mm;"></span><br>
+      次にこの紙を開く月　<span class="fld" style="width:20mm;"></span> 月
+      <span class="note">（年末か、年度初めをおすすめします）</span></div>
+  </div>'''
+
+    return [page(p1, "家電の買い替え年表", "1 / 3　使い方と部品の期限"),
+            page(p2, "家電の買い替え年表", "2 / 3　家電の一覧"),
+            page(p3, "家電の買い替え年表", "3 / 3　お金と捨て方")]
+
+
+PRODUCTS.update({"kaden": ("家電の買い替え年表", kaden)})
