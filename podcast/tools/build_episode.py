@@ -17,11 +17,13 @@ from __future__ import annotations
 
 import argparse
 import sys
+import warnings
 from pathlib import Path
 
 import numpy as np
 import pyloudnorm as pyln
 import soundfile as sf
+from scipy.ndimage import minimum_filter1d, uniform_filter1d
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import (AUDIO_DIR, ROOT, decode_audio, line_wav_path,  # noqa: E402
@@ -65,7 +67,38 @@ def tile_to(x: np.ndarray, n: int) -> np.ndarray:
     return np.tile(x, (reps, 1))[:n] if reps > 1 else x[:n]
 
 
-def build_narration(timeline: list[dict], sr: int, verbose: bool) -> tuple[np.ndarray, list[tuple[float, str]], dict]:
+def limit_peaks(x: np.ndarray, sr: int, ceiling_db: float,
+                lookahead_ms: float = 2.0, release_ms: float = 80.0) -> tuple[np.ndarray, float]:
+    """ピークだけを天井以下に抑えるルックアヘッド・リミッター。
+
+    全体を一律に下げるとラウドネス正規化の結果が崩れるため、超過している
+    ところだけゲインを下げる。戻り値は (処理後, 最大ゲインリダクションdB)。
+
+    ゲイン曲線は「先読み+ホールドの移動最小値 → 移動平均で平滑化」で作る。
+    平滑化でわずかに緩む分は最後に残差を測って微調整する。
+    """
+    ceiling = 10 ** (ceiling_db / 20.0)
+    peak = np.max(np.abs(x), axis=1)
+    if float(peak.max()) <= ceiling:
+        return x, 0.0
+
+    look = max(1, int(lookahead_ms / 1000 * sr))
+    hold = max(1, int(release_ms / 1000 * sr))
+    gain = np.minimum(1.0, ceiling / np.maximum(peak, 1e-12)).astype(np.float32)
+    # 先読みとホールドをまとめて移動最小値で作る（アタック歪みを避ける）
+    gain = minimum_filter1d(gain, size=look * 2 + hold, mode="nearest")
+    # 段差を均してポンピングを防ぐ
+    gain = uniform_filter1d(gain, size=look * 2 + 1, mode="nearest")
+
+    y = (x * gain[:, None]).astype(np.float32)
+    residual = float(np.max(np.abs(y)))
+    if residual > ceiling:          # 平滑化で残った超過分だけを一律に詰める
+        y *= ceiling / residual
+    return y, float(-20 * np.log10(max(float(gain.min()), 1e-9)))
+
+
+def build_narration(timeline: list[dict], sr: int, verbose: bool,
+                    se_gain: float | None = None) -> tuple[np.ndarray, list[tuple[float, str]], dict]:
     chunks: list[np.ndarray] = []
     cues: list[tuple[float, str]] = []
     stats = {"lines": 0, "se_real": 0, "se_missing": 0, "missing_lines": []}
@@ -87,7 +120,11 @@ def build_narration(timeline: list[dict], sr: int, verbose: bool) -> tuple[np.nd
         if kind == "se":
             path = ROOT / item["file"]
             if path.exists():
-                emit(to_stereo(decode_audio(path, sr)))
+                se = to_stereo(decode_audio(path, sr))
+                if se_gain is not None:
+                    se_rms = float(np.sqrt(np.mean(se ** 2))) or 1.0
+                    se = se * (se_gain / se_rms)
+                emit(se)
                 stats["se_real"] += 1
                 if verbose:
                     print(f"  SE  {item['id']} <- {item['file']}")
@@ -121,6 +158,8 @@ def main() -> int:
     ap.add_argument("--out", default="podcast/audio/podcast_ep001.wav")
     ap.add_argument("--bgm", default="", help="BGMファイル。省略するとBGM無しで書き出す")
     ap.add_argument("--bgm-ratio", type=float, default=None, help="ナレーション音量に対するBGM比率")
+    ap.add_argument("--se-ratio", type=float, default=None,
+                    help="セリフの実効音量に対するSEの比率")
     ap.add_argument("--lufs", type=float, default=None, help="目標ラウドネス (既定 -16)")
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args()
@@ -132,13 +171,21 @@ def main() -> int:
     bgm_ratio = args.bgm_ratio if args.bgm_ratio is not None else m["bgm_level_ratio"]
 
     print("== 1. 行WAVを連結し、行間の間を挿入 ==")
-    narration, cues, stats = build_narration(load_timeline(), sr, args.verbose)
+    timeline = load_timeline()
+    # 1パス目: セリフだけの実効音量を測る（SEをこれに合わせる基準にする）
+    speech_only = [it for it in timeline if it["type"] != "se"]
+    speech, _, _ = build_narration(speech_only, sr, verbose=False)
+    se_ratio = args.se_ratio if args.se_ratio is not None else m["se_level_ratio"]
+    se_gain = voiced_rms(speech) * se_ratio
+    narration, cues, stats = build_narration(timeline, sr, args.verbose, se_gain=se_gain)
     if stats["missing_lines"]:
         miss = stats["missing_lines"]
         print(f"\n!! 行WAVが {len(miss)} 本ありません (先頭: {', '.join(miss[:8])})")
         print("   先に synthesize.py を実行してください。中断します。")
         return 1
     print(f"   セリフ {stats['lines']} 行 / SE 実ファイル {stats['se_real']} ・無音代替 {stats['se_missing']}")
+    if stats["se_real"]:
+        print(f"   SEをセリフの実効音量の {se_ratio:.0%} に調整")
 
     print("== 2. 冒頭3秒・末尾5秒の無音を付加 ==")
     lead_in, tail = m["lead_in_sec"], m["tail_sec"]
@@ -164,13 +211,19 @@ def main() -> int:
     print(f"== 4. ラウドネスを {target_lufs} LUFS に正規化 ==")
     meter = pyln.Meter(sr)
     before = meter.integrated_loudness(master)
-    master = pyln.normalize.loudness(master, before, target_lufs)
+    with warnings.catch_warnings():   # 超過分は直後のリミッターで処理する
+        warnings.simplefilter("ignore")
+        master = pyln.normalize.loudness(master, before, target_lufs)
 
-    ceiling = 10 ** (m["true_peak_ceiling_db"] / 20.0)
-    peak = float(np.max(np.abs(master)))
-    if peak > ceiling:
-        master *= ceiling / peak
-        print(f"   ピーク {20*np.log10(peak):.2f} dBFS -> {m['true_peak_ceiling_db']:.1f} dBFS に抑制")
+    master, reduction = limit_peaks(master, sr, m["true_peak_ceiling_db"])
+    if reduction > 0:
+        print(f"   ピーク超過分をリミッターで抑制 (最大 {reduction:.2f} dB)")
+        # リミッターでわずかに下がったラウドネスを目標へ戻し、再度天井を守る
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            master = pyln.normalize.loudness(
+                master, meter.integrated_loudness(master), target_lufs)
+        master, _ = limit_peaks(master, sr, m["true_peak_ceiling_db"])
     after = meter.integrated_loudness(master)
 
     out = Path(args.out)

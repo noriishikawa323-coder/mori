@@ -100,12 +100,34 @@ def mock_wav(text: str, preset: dict, sample_rate: int, speaker_key: str) -> byt
     return buf.getvalue()
 
 
+def resolve_casting(meta: dict, name: str) -> dict:
+    """キャスティングプリセットを話者割り当てに解決する。"""
+    presets = meta.get("casting_presets", {})
+    key = name or meta.get("default_casting", "")
+    if not key:
+        return meta["speakers"]
+    if key not in presets:
+        raise SystemExit(
+            f"未定義のキャスティング '{key}'。選べるのは: {', '.join(presets) or '(なし)'}"
+        )
+    preset = presets[key]
+    print(f"キャスティング: {preset.get('label', key)}")
+    merged = {}
+    for role, base in meta["speakers"].items():
+        merged[role] = {**base, **{k: v for k, v in preset.get(role, {}).items()}}
+        print(f"  {role:8s} -> speaker_id={merged[role]['voicevox_speaker_id']} "
+              f"({merged[role]['voicevox_name']})")
+    return merged
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="VOICEVOX で台本を1行ずつ合成する")
     ap.add_argument("--engine", default="http://127.0.0.1:50021", help="VOICEVOX エンジンのURL")
     ap.add_argument("--timeout", type=float, default=60.0)
     ap.add_argument("--force", action="store_true", help="既存の行WAVも作り直す")
     ap.add_argument("--only", default="", help="合成する行IDをカンマ区切りで指定")
+    ap.add_argument("--casting", default="",
+                    help="キャスティングプリセット名 (未指定なら meta の default_casting)")
     ap.add_argument("--mock", action="store_true",
                     help="エンジンを使わず、尺とテンポだけのプレビュー音を生成する")
     args = ap.parse_args()
@@ -113,7 +135,7 @@ def main() -> int:
     meta = load_meta()
     timeline = load_timeline()
     sample_rate = meta["master"]["sample_rate"]
-    speakers = meta["speakers"]
+    speakers = resolve_casting(meta, args.casting)
     presets = meta["emotion_presets"]
     only = {s.strip() for s in args.only.split(",") if s.strip()}
 

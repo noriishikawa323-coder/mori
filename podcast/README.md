@@ -11,6 +11,7 @@ podcast/
 │   └── ep001_production_notes.md    SE仕様・演出メモ・裏取りリスト
 ├── tools/
 │   ├── common.py                    共通ユーティリティ
+│   ├── make_se.py                   実演コーナーのSEを生成
 │   ├── synthesize.py                VOICEVOX 合成（1行1ファイル）
 │   └── build_episode.py             結合・無音付加・BGM合成・LUFS正規化
 └── audio/
@@ -30,6 +31,9 @@ VOICEVOX エンジンを起動し、`http://127.0.0.1:50021` で待ち受けさ�
 ## 使い方
 
 ```bash
+# 0. 実演コーナーのSEを生成（初回のみ。assets/se/ に3点出ます）
+python3 podcast/tools/make_se.py
+
 # 1. 全162行を合成（2回目以降は差分のみ。--force で全再合成）
 python3 podcast/tools/synthesize.py
 
@@ -69,6 +73,23 @@ python3 podcast/tools/build_episode.py --out /tmp/preview.wav
 - `se` … 実ファイルがあれば挿入、無ければ `fallback_sec` の無音で尺を維持。
 - `marker` … 音には出ず、チャプター表の見出しになる。
 
+### キャスティングの切り替え
+
+`ep001_meta.json` の `casting_presets` に定義してあります。
+
+```bash
+python3 podcast/tools/synthesize.py --force                   # 既定 (ずんだもん / 四国めたん)
+python3 podcast/tools/synthesize.py --force --casting izakaya # 玄野武宏 / 青山龍星
+```
+
+| プリセット | ハヤシ(解説) | サカイ(リアクション) |
+|---|---|---|
+| `as_specified`（既定） | ずんだもん(3) | 四国めたん(2) |
+| `izakaya` | 玄野武宏(11) | 青山龍星(13) |
+
+台本は居酒屋トークの文体なので、`izakaya` のほうが噛み合います。
+両方合成して聴き比べる場合は `--force` を付けて上書きしてください。
+
 ### 感情プリセット
 
 `ep001_meta.json` の `emotion_presets` で定義。VOICEVOX の audio_query を上書きします。
@@ -93,13 +114,21 @@ python3 podcast/tools/build_episode.py --out /tmp/preview.wav
 | `lead_in_sec` | 3.0 | 冒頭の無音 |
 | `tail_sec` | 5.0 | 末尾の余韻 |
 | `target_lufs` | -16.0 | 目標ラウドネス（`--lufs` で上書き可） |
-| `true_peak_ceiling_db` | -1.0 | ピーク上限。超える分だけ全体を下げる |
+| `true_peak_ceiling_db` | -1.0 | ピーク上限。リミッターで超過分だけ抑える |
+| `se_level_ratio` | 0.9 | セリフの実効音量に対するSEの比率（`--se-ratio`） |
 | `bgm_level_ratio` | 0.15 | ナレーションの実効音量に対するBGMの比率 |
 | `bgm_fade_in_sec` / `bgm_fade_out_sec` | 3.0 / 5.0 | BGMのフェード |
 
-BGMはナレーションの**有声区間のRMS**を基準に音量を合わせます（全体RMSだと
-無音区間に引っ張られてBGMが大きくなりすぎるため）。エピソードより短いBGMは
-自動でループします。
+BGMとSEはどちらもナレーションの**有声区間のRMS**を基準に音量を合わせます
+（全体RMSだと無音区間に引っ張られて大きくなりすぎるため）。SEの音量は
+素材ファイルの絶対レベルに依存しないので、SEを差し替えてもバランスは崩れません。
+エピソードより短いBGMは自動でループします。
+
+ピーク処理は**ルックアヘッド・リミッター**です。全体を一律に下げると
+ラウドネス正規化の結果が崩れる（SEや語気の強い行のピークに引きずられて
+最終値が目標を大きく下回る）ため、超過している箇所のゲインだけを下げ、
+その後もう一度目標ラウドネスに合わせ直しています。BGM有り/無しの両方で
+**-16.00 LUFS かつピーク -1.00 dBFS** になることを実測確認済みです。
 
 ## クレジット表記
 
