@@ -170,3 +170,25 @@ https://colab.research.google.com/github/noriishikawa323-coder/mori/blob/claude/
 
 注意: iOSではブラウザを裏に回すとColabの接続が切れます。実行中は
 Safariを前面に置き、設定→画面表示と明るさ→自動ロックを「なし」にしてください。
+
+## コマンドを使わない手順
+
+1. https://github.com/noriishikawa323-coder/mori/tree/claude/podcast-planning-daily-insights-2mbv5m
+   を開き、緑の **Code** ボタン → **Download ZIP**
+2. ダウンロードしたZIPを展開する
+   （Windows: 右クリック → すべて展開 / Mac: ダブルクリック）
+3. VOICEVOX を起動しておく
+4. 展開したフォルダの中の
+   - Windows → `make_audio.bat` をダブルクリック
+   - Mac → `make_audio.command` をダブルクリック
+
+`podcast/audio/podcast_ep001.wav` ができます。
+
+### 予備手段: VOICEVOXアプリだけで作る
+
+上がどうしても動かない場合、`podcast/script/ep001_voicevox_import.txt` を
+VOICEVOX の「テキスト読み込み」で開くと、162行が音声ブロックとして並びます。
+そのまま「音声を繋げて書き出し」で1本のwavになります。
+
+ただしこの方法では、感情プリセット（話速・抑揚）、行間の間、SE、BGM、
+ラウドネス正規化がすべて反映されません。仕上がりは粗くなります。
