@@ -4,13 +4,13 @@
   "duration_target_sec": 660,
   "speakers": {
     "HAYASHI": {
-      "voicevox_speaker_id": 3,
-      "voicevox_name": "ずんだもん(ノーマル)",
+      "voicevox_speaker_id": 11,
+      "voicevox_name": "玄野武宏(ノーマル)",
       "role": "解説役"
     },
     "SAKAI": {
-      "voicevox_speaker_id": 2,
-      "voicevox_name": "四国めたん(ノーマル)",
+      "voicevox_speaker_id": 13,
+      "voicevox_name": "青山龍星(ノーマル)",
       "role": "リアクション役"
     }
   },
@@ -50,7 +50,7 @@
   },
   "casting_presets": {
     "as_specified": {
-      "label": "ご指定どおり (ずんだもん / 四国めたん)",
+      "label": "ずんだもん / 四国めたん",
       "HAYASHI": {
         "voicevox_speaker_id": 3,
         "voicevox_name": "ずんだもん(ノーマル)"
@@ -72,5 +72,5 @@
       }
     }
   },
-  "default_casting": "as_specified"
+  "default_casting": "izakaya"
 }

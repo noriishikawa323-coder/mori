@@ -19,7 +19,26 @@ podcast/
     └── podcast_ep001.wav            最終成果物
 ```
 
-## 必要なもの
+## いちばん簡単な手順
+
+1. **VOICEVOX** を https://voicevox.hiroshiba.jp からダウンロードして起動する
+   （起動しておくだけでよく、アプリ側の操作は要りません）
+2. リポジトリのフォルダで:
+   - Windows → `make_audio.bat` をダブルクリック
+   - Mac / Linux → ターミナルで `bash make_audio.sh`
+
+これで `podcast/audio/podcast_ep001.wav` が出来ます。
+ライブラリのインストールも中でやるので、事前準備は Python が入っていることだけです。
+
+キャスティングを変えて作り直したいときは引数をそのまま渡せます。
+
+```bash
+bash make_audio.sh --force --casting as_specified
+```
+
+---
+
+## 必要なもの（手動でやる場合）
 
 ```bash
 pip install -r podcast/requirements.txt
@@ -78,17 +97,19 @@ python3 podcast/tools/build_episode.py --out /tmp/preview.wav
 `ep001_meta.json` の `casting_presets` に定義してあります。
 
 ```bash
-python3 podcast/tools/synthesize.py --force                   # 既定 (ずんだもん / 四国めたん)
-python3 podcast/tools/synthesize.py --force --casting izakaya # 玄野武宏 / 青山龍星
+python3 podcast/tools/synthesize.py --force                        # 既定 (玄野武宏 / 青山龍星)
+python3 podcast/tools/synthesize.py --force --casting as_specified # ずんだもん / 四国めたん
 ```
 
 | プリセット | ハヤシ(解説) | サカイ(リアクション) |
 |---|---|---|
-| `as_specified`（既定） | ずんだもん(3) | 四国めたん(2) |
-| `izakaya` | 玄野武宏(11) | 青山龍星(13) |
+| `izakaya`（既定） | 玄野武宏(11) | 青山龍星(13) |
+| `as_specified` | ずんだもん(3) | 四国めたん(2) |
 
-台本は居酒屋トークの文体なので、`izakaya` のほうが噛み合います。
-両方合成して聴き比べる場合は `--force` を付けて上書きしてください。
+台本が居酒屋トークの文体なので、既定は男性2人にしてあります。
+別のキャラで試すときは `ep001_meta.json` の `casting_presets` に追記するか、
+`voicevox_speaker_id` を直接書き換えてください。
+作り直すときは `--force` を付けて上書きします。
 
 ### 感情プリセット
 
