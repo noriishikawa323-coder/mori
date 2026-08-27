@@ -155,3 +155,18 @@ BGMとSEはどちらもナレーションの**有声区間のRMS**を基準に�
 
 VOICEVOX で生成した音声を公開する場合、各キャラクターの利用規約に従った
 クレジット表記が必要です。配信ページと音声内の双方を確認してください。
+
+## PCが無い場合（Google Colab）
+
+`podcast/colab/ep001_make_audio.ipynb` を Google Colab で開くと、
+クラウド上のLinuxで VOICEVOX エンジンごと動かせます。スマホのブラウザからでも
+セルの ▶ を上から順に押すだけで、Googleドライブに音声が出ます。
+
+Colab で開くURL:
+https://colab.research.google.com/github/noriishikawa323-coder/mori/blob/claude/podcast-planning-daily-insights-2mbv5m/podcast/colab/ep001_make_audio.ipynb
+
+開けない場合は colab.research.google.com → GitHub タブ →
+`noriishikawa323-coder/mori` を検索 → ブランチを選択 → ノートブックを選択。
+
+注意: iOSではブラウザを裏に回すとColabの接続が切れます。実行中は
+Safariを前面に置き、設定→画面表示と明るさ→自動ロックを「なし」にしてください。
